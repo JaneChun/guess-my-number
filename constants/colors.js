@@ -3,6 +3,7 @@ const Colors = {
 	dark800: '#000000',
 	dark700: '#0B192C',
 	dark600: '#1E3E62',
+	white: '#ffffff',
 };
 
 export default Colors;
