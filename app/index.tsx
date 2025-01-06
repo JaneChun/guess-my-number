@@ -12,6 +12,7 @@ import GameOverScreen from '../screens/GameOverScreen';
 export default function Index() {
 	const [userNumber, setUserNumber] = useState<number | null>(null);
 	const [isGameOver, setIsGameOver] = useState(true);
+	const [rounds, setRounds] = useState(0);
 
 	const [fontsLoaded] = useFonts({
 		'open-sans': require('../assets/fonts/OpenSans-Regular.ttf'),
@@ -27,8 +28,14 @@ export default function Index() {
 		setIsGameOver(false);
 	}
 
-	function gameOverHandler() {
+	function gameOverHandler(guessRoundsLength: number) {
+		setRounds(guessRoundsLength);
 		setIsGameOver(true);
+	}
+
+	function startNewGameHandler() {
+		setUserNumber(null);
+		setRounds(0);
 	}
 
 	let screen = <StartGameScreen onConfirmNumber={pickedNumberHandler} />;
@@ -38,7 +45,7 @@ export default function Index() {
 	}
 
 	if (isGameOver && userNumber) {
-		screen = <GameOverScreen />;
+		screen = <GameOverScreen roundsNumber={rounds} userNumber={userNumber} onStartNewGame={startNewGameHandler} />;
 	}
 
 	return (
@@ -49,7 +56,7 @@ export default function Index() {
 				style={styles.rootScreen}
 				imageStyle={styles.backgroundImage}
 			>
-				<SafeAreaView styles={styles.rootScreen}>{screen}</SafeAreaView>
+				<SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
 			</ImageBackground>
 		</LinearGradient>
 	);
