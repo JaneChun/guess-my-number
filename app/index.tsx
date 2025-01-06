@@ -1,6 +1,7 @@
 import { ImageBackground, StyleSheet, SafeAreaView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useState } from 'react';
+import Colors from '@/constants/colors';
 
 import StartGameScreen from '../screens/StartGameScreen';
 import GameScreen from '../screens/GameScreen';
@@ -19,7 +20,7 @@ export default function Index() {
 	}
 
 	return (
-		<LinearGradient colors={['#0B192C', '#000000']} style={styles.rootScreen}>
+		<LinearGradient colors={[Colors.dark700, Colors.dark800]} style={styles.rootScreen}>
 			<ImageBackground
 				source={require('../assets/images/background.png')}
 				resizeMode='cover'
