@@ -28,7 +28,7 @@ function GameScreen({ userNumber, onGameOver }) {
 
 	function nextGuessHandler(direction) {
 		if ((direction === 'lower' && currentGuess < userNumber) || (direction === 'greater' && currentGuess > userNumber)) {
-			Alert.alert("Don't lie!", [{ text: 'Sorry!', style: 'cancel' }]); // 여기서 alert이 안뜨고 무한 호출 발생해서 앱 종료됨
+			Alert.alert("Don't lie!", 'You know that this is wrong...', [{ text: 'Sorry!', style: 'cancel' }]); // 여기서 alert이 안뜨고 무한 호출 발생해서 앱 종료됨
 			return;
 		}
 		if (direction === 'lower') {
