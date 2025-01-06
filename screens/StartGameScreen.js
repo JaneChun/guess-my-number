@@ -1,5 +1,6 @@
-import { StyleSheet, TextInput, View, Alert } from 'react-native';
-import PrimaryButton from '../components/ui/PrimaryButton';
+import { StyleSheet, TextInput, View, Alert, Text } from 'react-native';
+import PrimaryButton from '@/components/ui/PrimaryButton';
+import Title from '@/components/ui/Title';
 import { useState } from 'react';
 import Colors from '@/constants/colors';
 
@@ -25,33 +26,41 @@ function StartGameScreen({ onConfirmNumber }) {
 	}
 
 	return (
-		<View style={styles.inputContainer}>
-			<TextInput
-				style={styles.numberInput}
-				maxLength={2}
-				keyboardType='number-pad'
-				autoCapitalize='none'
-				autoCorrect={false}
-				value={enteredNumber}
-				onChangeText={numberInputHandler}
-			/>
-			<View style={styles.buttonsContiner}>
-				<PrimaryButton style={styles.buttonContainer} onPress={resetInputHanlder}>
-					Reset
-				</PrimaryButton>
-				<PrimaryButton style={styles.buttonContainer} onPress={confirmInputHandler}>
-					Confirm
-				</PrimaryButton>
+		<View style={styles.rootContainer}>
+			<Title>Guess My Number</Title>
+			<View style={styles.inputContainer}>
+				<Text style={styles.instructionText}>Enter a Number:</Text>
+				<TextInput
+					style={styles.numberInput}
+					maxLength={2}
+					keyboardType='number-pad'
+					autoCapitalize='none'
+					autoCorrect={false}
+					value={enteredNumber}
+					onChangeText={numberInputHandler}
+				/>
+				<View style={styles.buttonsContiner}>
+					<PrimaryButton style={styles.buttonContainer} onPress={resetInputHanlder}>
+						Reset
+					</PrimaryButton>
+					<PrimaryButton style={styles.buttonContainer} onPress={confirmInputHandler}>
+						Confirm
+					</PrimaryButton>
+				</View>
 			</View>
 		</View>
 	);
 }
 
 const styles = StyleSheet.create({
+	rootContainer: {
+		marginTop: 100,
+		alignItems: 'center',
+	},
 	inputContainer: {
 		justifyContent: 'center',
 		alignItems: 'center',
-		marginTop: 100,
+		marginTop: 36,
 		marginHorizontal: 24,
 		padding: 16,
 		backgroundColor: Colors.dark700,
@@ -61,6 +70,11 @@ const styles = StyleSheet.create({
 		shadowOffset: { width: 0, height: 2 },
 		shadowRadius: 6,
 		shadowOpacity: 0.25,
+	},
+	instructionText: {
+		fontSize: 16,
+		color: Colors.white,
+		fontFamily: 'open-sans',
 	},
 	numberInput: {
 		width: 50,
