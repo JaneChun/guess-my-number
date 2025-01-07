@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, Alert, FlatList } from 'react-native';
+import { StyleSheet, View, Text, Alert, FlatList, useWindowDimensions, ScrollView } from 'react-native';
 import Title from '../components/ui/Title';
 import NumberContainer from '../components/game/NumberContainer';
 import PrimaryButton from '@/components/ui/PrimaryButton';
@@ -14,6 +14,7 @@ function GameScreen({ userNumber, onGameOver }) {
 	const initialGuess = generateRandomBetween(1, 100, userNumber);
 	const [currentGuess, setCurrentGuess] = useState(initialGuess);
 	const [guessRounds, setGuessRounds] = useState([initialGuess]);
+	const { width, height } = useWindowDimensions();
 
 	useEffect(() => {
 		if (currentGuess === userNumber) {
@@ -41,10 +42,8 @@ function GameScreen({ userNumber, onGameOver }) {
 		setGuessRounds((prevGuessRounds) => [newRandomNumber, ...prevGuessRounds]);
 	}
 
-	return (
-		<View style={styles.screen}>
-			<Title>Opponent's Guess</Title>
-
+	let content = (
+		<>
 			<NumberContainer>{currentGuess}</NumberContainer>
 
 			<View style={styles.container}>
@@ -58,18 +57,49 @@ function GameScreen({ userNumber, onGameOver }) {
 					</PrimaryButton>
 				</View>
 			</View>
+		</>
+	);
 
-			<View style={styles.listContainer}>
-				{/* {guessRounds.map((guessRound) => (
-					<Text key={guessRound}>{guessRound}</Text>
-				))} */}
-				<FlatList
-					data={guessRounds}
-					renderItem={(itemData) => <GuessLogItem roundNumber={guessRounds.length - itemData.index} guess={itemData.item} />}
-					keyExtractor={(item) => item}
-				/>
-			</View>
-		</View>
+	if (height < 400) {
+		content = (
+			<>
+				<Text style={styles.subTitle}>Higher or Lower?</Text>
+
+				<View style={styles.flexContainer}>
+					<View style={styles.buttonsContiner}>
+						<PrimaryButton style={styles.buttonContainer} onPress={() => nextGuessHandler('lower')}>
+							<AntDesign name='minus' size={24} />
+						</PrimaryButton>
+					</View>
+					<NumberContainer>{currentGuess}</NumberContainer>
+					<View style={styles.buttonsContiner}>
+						<PrimaryButton style={styles.buttonContainer} onPress={() => nextGuessHandler('greater')}>
+							<AntDesign name='plus' size={24} />
+						</PrimaryButton>
+					</View>
+				</View>
+			</>
+		);
+	}
+
+	return (
+		<FlatList
+			ListHeaderComponent={
+				<>
+					<View style={styles.screen}>
+						<Title>Opponent's Guess</Title>
+						{content}
+					</View>
+				</>
+			}
+			data={guessRounds}
+			renderItem={(itemData) => <GuessLogItem roundNumber={guessRounds.length - itemData.index} guess={itemData.item} />}
+			keyExtractor={(item) => item}
+			contentContainerStyle={{
+				padding: 24,
+				alignItems: 'center',
+			}}
+		/>
 	);
 }
 
@@ -87,7 +117,6 @@ export default GameScreen;
 
 const styles = StyleSheet.create({
 	screen: {
-		flex: 1,
 		padding: 24,
 		alignItems: 'center',
 	},
@@ -111,5 +140,9 @@ const styles = StyleSheet.create({
 	listContainer: {
 		flex: 1,
 		padding: 16,
+	},
+	flexContainer: {
+		flexDirection: 'row',
+		alignItems: 'center',
 	},
 });

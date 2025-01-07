@@ -1,33 +1,38 @@
 import PrimaryButton from '@/components/ui/PrimaryButton';
 import Title from '@/components/ui/Title';
 import Colors from '@/constants/colors';
-import { StyleSheet, Text, Image, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, Image, View, Dimensions, ScrollView } from 'react-native';
 
 function GameOverScreen({ roundsNumber, userNumber, onStartNewGame }) {
 	const deviceHeight = Dimensions.get('window').height;
 	const imageSize = deviceHeight < 700 ? 200 : 300;
 
 	return (
-		<View style={styles.rootContainer}>
-			<Title>GAME OVER!</Title>
-			<View style={[styles.imageContainer, { width: imageSize, height: imageSize, borderRadius: imageSize / 2 }]}>
-				<Image
-					style={[styles.image, { width: imageSize, height: imageSize, borderRadius: imageSize / 2 }]}
-					source={require('../assets/images/success.png')}
-				/>
+		<ScrollView style={styles.scrollContainer}>
+			<View style={styles.rootContainer}>
+				<Title>GAME OVER!</Title>
+				<View style={[styles.imageContainer, { width: imageSize, height: imageSize, borderRadius: imageSize / 2 }]}>
+					<Image
+						style={[styles.image, { width: imageSize, height: imageSize, borderRadius: imageSize / 2 }]}
+						source={require('../assets/images/success.png')}
+					/>
+				</View>
+				<Text style={styles.summaryText}>
+					Your phone needed <Text style={styles.highlight}>{roundsNumber}</Text> rounds to guess the number{' '}
+					<Text style={styles.highlight}>{userNumber}</Text>.
+				</Text>
+				<PrimaryButton onPress={onStartNewGame}>Start New Game</PrimaryButton>
 			</View>
-			<Text style={styles.summaryText}>
-				Your phone needed <Text style={styles.highlight}>{roundsNumber}</Text> rounds to guess the number{' '}
-				<Text style={styles.highlight}>{userNumber}</Text>.
-			</Text>
-			<PrimaryButton onPress={onStartNewGame}>Start New Game</PrimaryButton>
-		</View>
+		</ScrollView>
 	);
 }
 
 export default GameOverScreen;
 
 const styles = StyleSheet.create({
+	scrollContainer: {
+		flex: 1,
+	},
 	rootContainer: {
 		flex: 1,
 		padding: 24,
