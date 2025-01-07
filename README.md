@@ -1,50 +1,25 @@
-# Welcome to your Expo app 👋
+# Guess My Number 🎮
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## **게임 설명**
 
-## Get started
+"Guess My Number"는 컴퓨터가 사용자가 생각한 숫자를 맞히는 간단한 숫자 추측 게임입니다.  
+1부터 99 사이의 숫자를 선택하면, 컴퓨터가 무작위로 추측하며 정답을 맞히기 위해 사용자로부터 `greater`(더 높은 숫자) 또는 `lower`(더 낮은 숫자) 힌트를 받습니다.  
+게임이 끝나면 컴퓨터가 몇 라운드 만에 정답을 맞혔는지 확인할 수 있습니다.
 
-1. Install dependencies
+---
 
-   ```bash
-   npm install
-   ```
+## **게임 규칙**
 
-2. Start the app
+1. 사용자는 **1~99** 사이의 숫자를 선택합니다.
+2. 컴퓨터가 숫자를 무작위로 추측합니다.
+3. 사용자는 컴퓨터에게 **greater** 또는 **lower** 버튼으로 힌트를 제공합니다.
+4. 컴퓨터가 정답을 맞히면 라운드 수가 표시되며 게임이 종료됩니다.
 
-   ```bash
-    npx expo start
-   ```
+---
 
-In the output, you'll find options to open the app in a
+## **시연 영상**
+### iOS
+https://github.com/user-attachments/assets/0f887293-35cd-4df4-a67c-62de3dc4955a
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### Android
+https://github.com/user-attachments/assets/6bd6601c-b792-4333-838b-2c75584ee6f5
