@@ -30,15 +30,18 @@ function StartGameScreen({ onConfirmNumber }) {
 			<Title>Guess My Number</Title>
 			<View style={styles.inputContainer}>
 				<Text style={styles.instructionText}>Enter a Number:</Text>
-				<TextInput
-					style={styles.numberInput}
-					maxLength={2}
-					keyboardType='number-pad'
-					autoCapitalize='none'
-					autoCorrect={false}
-					value={enteredNumber}
-					onChangeText={numberInputHandler}
-				/>
+
+				<View style={styles.numberInputContainer}>
+					<TextInput
+						style={styles.numberInput}
+						maxLength={2}
+						keyboardType='number-pad'
+						autoCapitalize='none'
+						autoCorrect={false}
+						value={enteredNumber}
+						onChangeText={numberInputHandler}
+					/>
+				</View>
 				<View style={styles.buttonsContiner}>
 					<PrimaryButton style={styles.buttonContainer} onPress={resetInputHanlder}>
 						Reset
@@ -76,14 +79,20 @@ const styles = StyleSheet.create({
 		color: Colors.white,
 		fontFamily: 'open-sans',
 	},
-	numberInput: {
+	numberInputContainer: {
 		width: 50,
 		height: 50,
-		fontSize: 32,
 		borderBottomColor: Colors.primary500,
 		borderBottomWidth: 2,
-		color: Colors.primary500,
 		marginVertical: 8,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	numberInput: {
+		padding: 0,
+		includeFontPadding: false,
+		fontSize: 32,
+		color: Colors.primary500,
 		fontWeight: 'bold',
 		textAlign: 'center',
 	},

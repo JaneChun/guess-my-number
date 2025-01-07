@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
 	screen: {
 		flex: 1,
 		padding: 24,
+		alignItems: 'center',
 	},
 	container: {
 		height: 100,

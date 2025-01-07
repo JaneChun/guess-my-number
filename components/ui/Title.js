@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
 		borderWidth: 2,
 		borderColor: Colors.white,
 		padding: 12,
-		height: 60,
 	},
 	title: {
 		fontSize: 24,
@@ -24,5 +23,7 @@ const styles = StyleSheet.create({
 		color: Colors.white,
 		textAlign: 'center',
 		fontFamily: 'open-sans-bold',
+		width: 300,
+		maxWidth: '80%',
 	},
 });
